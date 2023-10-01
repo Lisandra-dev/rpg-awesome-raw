@@ -3,7 +3,7 @@ name: Create Release on Merge or Trigger
 on:
   push:
     tags:
-      - v*
+      - *
     
 jobs:
   release:
