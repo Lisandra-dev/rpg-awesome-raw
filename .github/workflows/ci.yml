@@ -1,0 +1,24 @@
+name: Create Release on Merge or Trigger
+
+on:
+  push:
+    tags:
+      - v*
+    
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create Zip Archive
+        run: |
+          zip -r rpg-awesome.zip Font/
+        working-directory: ${{ github.workspace }}
+
+      - name: release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: rpg-awesome.zip
